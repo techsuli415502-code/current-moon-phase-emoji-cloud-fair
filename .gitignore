@@ -64,3 +64,9 @@ server.log
 /.claude
 /.zscripts
 /prompt
+
+# Lockfiles — let Cloudflare use npm (not bun)
+bun.lock
+bun.lockb
+yarn.lock
+pnpm-lock.yaml
