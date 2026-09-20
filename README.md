@@ -4,6 +4,8 @@ Live, real-time moon phase website built with **Next.js 16** + **TypeScript** + 
 
 The hero shows the real-time Moon phase emoji (calculated from the current date using a custom synodic-month algorithm), illumination %, lunar age, and a countdown to the next major phase. Includes 7 pages: Home, About, Contact, Privacy, Terms, Disclaimer, Sources.
 
+**Production subdomain (Cloudflare Pages free tier):** `https://todaymoonemoji.pages.dev`
+
 ## Pages
 
 - `/` — Home (hero, 8 phases, lunar cycle, calendar, meanings, how phases work, facts, FAQ, E-E-A-T bio, sources)

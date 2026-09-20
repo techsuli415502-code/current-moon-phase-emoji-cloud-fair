@@ -1,4 +1,4 @@
-name = "current-moon-phase-emoji"
+name = "todaymoonemoji"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
@@ -6,3 +6,4 @@ pages_build_output_dir = ".vercel/output/static"
 # Cloudflare Pages will use this when you run `npx wrangler pages deploy`.
 # For dashboard-based deploys via "Connect to Git", this file is informational
 # — the dashboard fields override these values.
+# Project name "todaymoonemoji" → free subdomain will be https://todaymoonemoji.pages.dev
