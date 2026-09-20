@@ -10,6 +10,7 @@ export const SITE_NAME = "Moon Phase Emoji";
 export const SITE_TAGLINE = "Live lunar phase, glyph, and meaning — refreshed every minute.";
 export const SITE_DESCRIPTION =
   "Discover the current moon phase emoji, the live lunar cycle, and the meaning behind each phase. See today's Moon phase glyph, illumination, and countdown to the next full moon.";
+export const SITE_EMAIL = "techsuli415502@gmail.com";
 
 export interface NavLink {
   href: string;

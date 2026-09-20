@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Moon } from "lucide-react";
-import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { Moon, Mail } from "lucide-react";
+import { NAV_LINKS, SITE_NAME, SITE_EMAIL } from "@/lib/constants";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -53,6 +53,13 @@ export function Footer() {
                 Moon Phase Emoji
               </a>
             </p>
+            <a
+              href={`mailto:${SITE_EMAIL}`}
+              className="mt-4 inline-flex items-center gap-2 text-sm text-[#c4b9d6] transition-colors hover:text-[#f5c542]"
+            >
+              <Mail className="h-4 w-4 text-[#f5c542]" strokeWidth={2.2} />
+              {SITE_EMAIL}
+            </a>
           </div>
 
           {/* Site nav */}
