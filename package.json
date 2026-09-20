@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "npx @cloudflare/next-on-pages@1 --experimental-minify",
-    "build:next": "next build",
+    "build": "next build",
     "start": "next start -p 3000",
     "lint": "eslint .",
     "pages:build": "npx @cloudflare/next-on-pages@1 --experimental-minify",
