@@ -58,6 +58,7 @@ server.log
 /agent-ctx/
 /download/
 /tests/
+/upload/
 /.zscripts/
 /.z-ai-config/
 /.claude
