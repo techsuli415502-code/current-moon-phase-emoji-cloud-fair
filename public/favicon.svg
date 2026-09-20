@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Moon Phase Emoji favicon">
+  <defs>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8d77a"/>
+      <stop offset="50%" stop-color="#f5c542"/>
+      <stop offset="100%" stop-color="#c98a2d"/>
+    </linearGradient>
+    <radialGradient id="favGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f5c542" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#f5c542" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="favCrescent">
+      <rect width="32" height="32" fill="black"/>
+      <circle cx="16" cy="16" r="11" fill="white"/>
+      <circle cx="21" cy="13" r="10" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="32" height="32" fill="#0a0420"/>
+  <circle cx="16" cy="16" r="15" fill="url(#favGlow)"/>
+  <g mask="url(#favCrescent)">
+    <rect width="32" height="32" fill="url(#favGold)"/>
+  </g>
+  <circle cx="22" cy="18" r="2.2" fill="#fff7e6" opacity="0.95"/>
+</svg>

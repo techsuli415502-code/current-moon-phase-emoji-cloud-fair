@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" role="img" aria-label="Moon Phase Emoji logo">
+  <defs>
+    <linearGradient id="mpeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8d77a"/>
+      <stop offset="45%" stop-color="#f5c542"/>
+      <stop offset="100%" stop-color="#c98a2d"/>
+    </linearGradient>
+    <linearGradient id="mpePearl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7e6"/>
+      <stop offset="100%" stop-color="#f0d9a8"/>
+    </linearGradient>
+    <radialGradient id="mpeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5c542" stop-opacity="0.55"/>
+      <stop offset="65%" stop-color="#f5c542" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f5c542" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="mpeCrescent">
+      <rect width="240" height="60" fill="black"/>
+      <circle cx="30" cy="30" r="18" fill="white"/>
+      <circle cx="38" cy="26" r="16" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- moon glow aura -->
+  <circle cx="30" cy="30" r="28" fill="url(#mpeGlow)"/>
+
+  <!-- crescent + full disc overlapping -->
+  <g mask="url(#mpeCrescent)">
+    <rect width="60" height="60" fill="url(#mpeGold)"/>
+  </g>
+  <circle cx="42" cy="33" r="9" fill="url(#mpePearl)" opacity="0.95"/>
+  <!-- tiny face -->
+  <circle cx="40" cy="31" r="0.9" fill="#3a2a10"/>
+  <circle cx="44" cy="31" r="0.9" fill="#3a2a10"/>
+  <path d="M40 34 q2 1.6 4 0" stroke="#3a2a10" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+
+  <!-- lettermark MPE -->
+  <text x="60" y="38" font-family="Cormorant Garamond, Georgia, serif" font-size="22" font-weight="600" fill="url(#mpeGold)" letter-spacing="2">Moon Phase</text>
+  <text x="60" y="52" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#f5f0e8" letter-spacing="4" opacity="0.85">EMOJI GUIDE</text>
+</svg>

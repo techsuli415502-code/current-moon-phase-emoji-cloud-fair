@@ -1,0 +1,310 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* === Cosmic Observatory Theme ===
+ * Deep eggplant/violet base layered with nebula gradients and starfield.
+ * Warm gold accents for moon glow. Pearl white for body text.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Cosmic palette — always dark, layered violet→eggplant base */
+  --background: #0a0420;
+  --background-2: #1a0b3d;
+  --background-3: #2d1b5e;
+
+  --foreground: #f5f0e8;
+  --foreground-muted: #c4b9d6;
+
+  --card: rgba(45, 27, 94, 0.55);
+  --card-foreground: #f5f0e8;
+
+  --popover: #1a0b3d;
+  --popover-foreground: #f5f0e8;
+
+  /* Warm gold accent for the moon */
+  --primary: #f5c542;
+  --primary-foreground: #1a0b3d;
+  --secondary: rgba(245, 197, 66, 0.12);
+  --secondary-foreground: #f5f0e8;
+  --muted: rgba(245, 240, 232, 0.08);
+  --muted-foreground: #b8a8d4;
+  --accent: rgba(245, 197, 66, 0.18);
+  --accent-foreground: #f5f0e8;
+  --destructive: #e8746a;
+  --border: rgba(245, 240, 232, 0.12);
+  --input: rgba(245, 240, 232, 0.15);
+  --ring: #f5c542;
+
+  --chart-1: #f5c542;
+  --chart-2: #e8746a;
+  --chart-3: #b39ddb;
+  --chart-4: #7ec4cf;
+  --chart-5: #c98a2d;
+
+  --sidebar: #0a0420;
+  --sidebar-foreground: #f5f0e8;
+  --sidebar-primary: #f5c542;
+  --sidebar-primary-foreground: #1a0b3d;
+  --sidebar-accent: rgba(245, 197, 66, 0.18);
+  --sidebar-accent-foreground: #f5f0e8;
+  --sidebar-border: rgba(245, 240, 232, 0.12);
+  --sidebar-ring: #f5c542;
+
+  /* Brand color tokens */
+  --cosmic-eggplant: #0a0420;
+  --cosmic-violet: #1a0b3d;
+  --cosmic-grape: #2d1b5e;
+  --cosmic-gold: #f5c542;
+  --cosmic-gold-soft: #f8d77a;
+  --cosmic-gold-deep: #c98a2d;
+  --cosmic-rose: #b76d8f;
+  --cosmic-teal: #7ec4cf;
+  --cosmic-pearl: #f5f0e8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cormorant), Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0420;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2d1b5e, #4a2a7a);
+    border-radius: 10px;
+    border: 2px solid #0a0420;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4a2a7a, #6b3fa0);
+  }
+}
+
+/* === Cosmic background layers === */
+.cosmic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(183, 109, 143, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 30%, rgba(126, 196, 207, 0.14), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(245, 197, 66, 0.10), transparent 60%),
+    linear-gradient(180deg, #0a0420 0%, #1a0b3d 45%, #0a0420 100%);
+}
+
+.cosmic-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* === Animations === */
+@keyframes moonGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 60px 0 rgba(245, 197, 66, 0.45),
+      0 0 120px 10px rgba(245, 197, 66, 0.25),
+      inset -20px -20px 60px rgba(0, 0, 0, 0.55);
+  }
+  50% {
+    box-shadow:
+      0 0 90px 8px rgba(245, 197, 66, 0.6),
+      0 0 180px 18px rgba(245, 197, 66, 0.35),
+      inset -20px -20px 60px rgba(0, 0, 0, 0.55);
+  }
+}
+.animate-moon-glow {
+  animation: moonGlow 5s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-12px) translateX(4px); }
+}
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes nebulaDrift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -2%, 0) scale(1.04); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.animate-nebula {
+  animation: nebulaDrift 30s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* === Headline glow === */
+.headline-glow {
+  text-shadow:
+    0 0 30px rgba(245, 197, 66, 0.25),
+    0 0 60px rgba(245, 197, 66, 0.12),
+    0 2px 4px rgba(10, 4, 32, 0.6);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #f8d77a 0%, #f5c542 40%, #e8a857 70%, #c98a2d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-pearl {
+  background: linear-gradient(180deg, #f5f0e8 0%, #c4b9d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* === Starfield === */
+.stars-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.9), transparent 50%),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.7), transparent 50%),
+    radial-gradient(1px 1px at 80% 20%, rgba(245,197,66,0.85), transparent 50%),
+    radial-gradient(1px 1px at 40% 90%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1.5px 1.5px at 90% 50%, rgba(255,255,255,0.8), transparent 50%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.7), transparent 50%);
+  background-size: 400px 400px;
+  animation: twinkle 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* === Glass card === */
+.glass-card {
+  background: linear-gradient(180deg, rgba(45, 27, 94, 0.55), rgba(26, 11, 61, 0.35));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(245, 197, 66, 0.18);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(245, 240, 232, 0.06);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(245, 197, 66, 0.45);
+  box-shadow:
+    0 20px 50px -10px rgba(245, 197, 66, 0.15),
+    inset 0 1px 0 rgba(245, 240, 232, 0.1);
+}
+
+/* === Section eyebrow === */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #f5c542;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f5c542);
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-moon-glow,
+  .animate-float-slow,
+  .animate-nebula,
+  .stars-layer {
+    animation: none !important;
+  }
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid #f5c542;
+  outline-offset: 2px;
+}
