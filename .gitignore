@@ -70,3 +70,6 @@ bun.lock
 bun.lockb
 yarn.lock
 pnpm-lock.yaml
+
+# Static export build output
+/out/

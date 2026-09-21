@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Standard Next.js build for Vercel deploys. Cloudflare Pages fallback
-  // is available via `npm run pages:build` (uses @cloudflare/next-on-pages).
+  // Static HTML export — produces `out/` directory which Cloudflare Pages
+  // auto-detects. No deploy command, no wrangler, no Node v22 requirement.
+  output: "export",
+  // Static export requires unoptimized images (no server-side image optimization).
+  images: {
+    unoptimized: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
