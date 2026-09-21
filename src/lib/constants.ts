@@ -18,6 +18,14 @@ export const SITE_EMAIL = "techsuli415502@gmail.com";
  */
 export const GA_MEASUREMENT_ID = "G-PYHWGSM864";
 
+/**
+ * Google Search Console site verification token.
+ * Rendered as <meta name="google-site-verification" content="..."> in the
+ * root layout so Google can verify domain ownership.
+ */
+export const GOOGLE_SITE_VERIFICATION =
+  "77nZt9ht0W7aKD6iTuegi-J7fzbb74UZqlpk9GUfWmw";
+
 export interface NavLink {
   href: string;
   label: string;

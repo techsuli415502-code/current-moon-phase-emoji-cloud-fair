@@ -10,6 +10,7 @@ import {
   SITE_URL,
   SITE_NAME,
   SITE_DESCRIPTION,
+  GOOGLE_SITE_VERIFICATION,
 } from "@/lib/constants";
 
 const inter = Inter({
@@ -92,6 +93,9 @@ export const metadata: Metadata = {
   },
   category: "science",
   applicationName: SITE_NAME,
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
