@@ -3,8 +3,9 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 # Workers Static Assets — serves the static export from ./out
-# This makes `npx wrangler deploy` work as a Worker that serves your static site.
+# Assets-only Worker (no `main` script) — do NOT add a binding here,
+# otherwise wrangler errors with "Cannot use assets with a binding in an
+# assets-only Worker."
 [assets]
 directory = "./out"
-binding = "ASSETS"
 not_found_handling = "single-page-application"
