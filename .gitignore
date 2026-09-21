@@ -59,6 +59,7 @@ server.log
 /download/
 /tests/
 /upload/
+/tool-results/
 /.zscripts/
 /.z-ai-config/
 /.claude
