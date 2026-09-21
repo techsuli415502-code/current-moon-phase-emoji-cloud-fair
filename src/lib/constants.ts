@@ -12,6 +12,12 @@ export const SITE_DESCRIPTION =
   "Discover the current moon phase emoji, the live lunar cycle, and the meaning behind each phase. See today's Moon phase glyph, illumination, and countdown to the next full moon.";
 export const SITE_EMAIL = "techsuli415502@gmail.com";
 
+/**
+ * Google Analytics 4 Measurement ID (format: G-XXXXXXXXXX).
+ * Leave as-is to enable GA on every page; change to "G-XXXXXXXXXX" to disable.
+ */
+export const GA_MEASUREMENT_ID = "G-PYHWGSM864";
+
 export interface NavLink {
   href: string;
   label: string;

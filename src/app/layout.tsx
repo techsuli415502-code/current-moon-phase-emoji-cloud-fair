@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { StarfieldBackground } from "@/components/site/starfield-background";
+import { GoogleAnalytics } from "@/components/site/google-analytics";
 import {
   SITE_URL,
   SITE_NAME,
@@ -110,6 +111,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <Toaster />
+        <GoogleAnalytics />
       </body>
     </html>
   );
