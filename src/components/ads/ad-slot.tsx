@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useMemo } from "react";
 
 interface AdSlotProps {
   /** Unique ad network key (used to build the invoke.js URL). */
@@ -20,15 +20,23 @@ interface AdSlotProps {
 /**
  * Renders a single ad slot from highrevenueformat.com.
  *
- * Each AdSlot creates its own DOM-scoped <script> elements via
- * document.createElement — this is the only safe way to load multiple
- * ads on the same page because the ad network uses a global `atOptions`
- * variable. We force `async = false` so the browser executes the
- * atOptions-setter and the matching invoke.js in document order, meaning
- * each invoke.js always reads the right atOptions snapshot.
+ * IMPORTANT — why we use an iframe instead of injecting scripts into the
+ * parent document:
  *
- * The scripts are scoped to the slot's own container ref so React's
- * static HTML export doesn't try to render them during the build.
+ * 1. The ad network's invoke.js calls document.write() to render the ad
+ *    creative. After the page has loaded, document.write() WIPES the
+ *    entire parent document — which is why the previous implementation
+ *    made ads disappear. Loading the script inside an iframe scopes
+ *    document.write to that iframe's document only.
+ *
+ * 2. invoke.js reads a global `atOptions` variable. With multiple ad
+ *    slots on the same page, the global gets overwritten before later
+ *    invoke.js calls read it. Each iframe has its own window object,
+ *    so each ad's atOptions is isolated.
+ *
+ * The srcDoc attribute is preferred over document.write into the iframe
+ * because it lets Next.js static export render the iframe content
+ * server-side, ensuring ads work without client-side hydration.
  */
 export function AdSlot({
   adKey,
@@ -38,36 +46,64 @@ export function AdSlot({
   label = "Advertisement",
   hideLabel = false,
 }: AdSlotProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isLoadedRef = useRef(false);
-
-  useEffect(() => {
-    if (isLoadedRef.current || !containerRef.current) return;
-    isLoadedRef.current = true;
-
-    const container = containerRef.current;
-
-    // 1) atOptions-setter script — defines the global adOptions for THIS slot
-    const optionsScript = document.createElement("script");
-    optionsScript.text = `atOptions = {'key':'${adKey}','format':'iframe','height':${height},'width':${width},'params':{}};`;
-    optionsScript.async = false;
-
-    // 2) invoke.js — loads the actual ad creative from the ad network.
-    // The URL contains the ad key, so the network knows which ad to return.
-    const invokeScript = document.createElement("script");
-    invokeScript.src = `https://www.highrevenueformat.com/${adKey}/invoke.js`;
-    invokeScript.async = false;
-
-    container.appendChild(optionsScript);
-    container.appendChild(invokeScript);
-
-    return () => {
-      // React unmount: clear the container so scripts don't leak/duplicate
-      // on route changes.
-      container.innerHTML = "";
-      isLoadedRef.current = false;
-    };
-  }, [adKey, width, height]);
+  const srcDoc = useMemo(
+    () => `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  #ad-fallback {
+    color: #9c8cba;
+    font-size: 11px;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+<div id="ad-fallback">Loading ad…</div>
+<script>
+  // Remove fallback once the ad script runs
+  (function(){
+    var observer = new MutationObserver(function(){
+      var fb = document.getElementById('ad-fallback');
+      if (fb && document.body.children.length > 1) {
+        fb.style.display = 'none';
+      }
+    });
+    observer.observe(document.body, { childNodes: true, subtree: true });
+    setTimeout(function(){ observer.disconnect(); }, 5000);
+  })();
+<\/script>
+<script>
+  atOptions = {
+    'key' : '${adKey}',
+    'format' : 'iframe',
+    'height' : ${height},
+    'width' : ${width},
+    'params' : {}
+  };
+<\/script>
+<script src="https://www.highrevenueformat.com/${adKey}/invoke.js"><\/script>
+</body>
+</html>`,
+    [adKey, width, height],
+  );
 
   return (
     <aside
@@ -80,17 +116,21 @@ export function AdSlot({
           {label}
         </span>
       )}
-      <div
-        ref={containerRef}
+      <iframe
+        // eslint-disable-next-line react/no-iframe -- intentional, isolates 3rd-party ad scripts
+        srcDoc={srcDoc}
+        title={`Advertisement ${width}x${height}`}
+        width={width}
+        height={height}
+        loading="lazy"
         style={{
-          minHeight: `${height}px`,
-          minWidth: `${width}px`,
-          width: "100%",
-          maxWidth: `${width}px`,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          border: "none",
+          maxWidth: "100%",
+          background: "transparent",
+          display: "block",
         }}
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+        referrerPolicy="no-referrer-when-downgrade"
       />
     </aside>
   );

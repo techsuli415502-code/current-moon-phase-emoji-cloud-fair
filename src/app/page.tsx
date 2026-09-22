@@ -88,15 +88,27 @@ export default function HomePage() {
       </section>
 
       <CurrentPhaseSection />
+
+      {/* Mid-content banner #1 — after current phase, high viewability */}
+      <MidContentBannerAd />
+
       <EightPhasesSection />
 
-      {/* Mid-content banner ad — between major sections, high scroll-depth viewability */}
+      {/* Mid-content banner #2 — between phases and lunar cycle */}
       <MidContentBannerAd />
 
       <LunarCycleSection />
       <MoonCalendar />
+
+      {/* Mid-content banner #3 — after calendar, mid-scroll capture */}
+      <MidContentBannerAd />
+
       <MoonMeaningSection />
       <HowItWorksSection />
+
+      {/* Mid-content banner #4 — before facts, recapture attention */}
+      <MidContentBannerAd />
+
       <MoonFactsSection />
       <LunarFaq />
       <EeatBio />

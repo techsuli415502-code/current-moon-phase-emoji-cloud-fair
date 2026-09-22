@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/site/page-header";
 import { SectionHeading } from "@/components/site/section-heading";
 import { EeatBio } from "@/components/site/eeat-bio";
 import { SourcesList } from "@/components/site/sources-list";
+import { MidContentBannerAd } from "@/components/ads/mid-content-banner-ad";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -98,6 +99,9 @@ export default function AboutPage() {
           </aside>
         </div>
       </section>
+
+      {/* Mid-content banner ad — between About sections */}
+      <MidContentBannerAd />
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <SectionHeading

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/page-header";
 import { SourcesList } from "@/components/site/sources-list";
+import { MidContentBannerAd } from "@/components/ads/mid-content-banner-ad";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -54,6 +55,9 @@ export default function SourcesPage() {
           </p>
         </div>
       </section>
+
+      {/* Mid-content banner ad — between intro and sources list */}
+      <MidContentBannerAd />
 
       <SourcesList withHeading={false} />
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/site/page-header";
+import { MidContentBannerAd } from "@/components/ads/mid-content-banner-ad";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -104,6 +105,11 @@ export default function DisclaimerPage() {
               </p>
             </div>
           </article>
+
+          {/* Mid-content banner ad — between sections 3 and 4 */}
+          <div className="my-10">
+            <MidContentBannerAd />
+          </div>
 
           <article>
             <h2 className="font-display text-2xl font-semibold text-[#f5c542]">

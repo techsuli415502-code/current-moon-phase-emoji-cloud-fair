@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Mail } from "lucide-react";
 import { PageHeader } from "@/components/site/page-header";
 import { ContactForm } from "@/components/site/contact-form";
+import { MidContentBannerAd } from "@/components/ads/mid-content-banner-ad";
 import { SITE_URL, SITE_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -93,6 +94,9 @@ export default function ContactPage() {
             </p>
           </div>
         </div>
+
+        {/* Mid-content banner ad — between contact form and supplementary info */}
+        <MidContentBannerAd />
 
         <p className="mt-8 text-sm text-[#9c8cba]">
           Looking for our source list instead? Read the{" "}
