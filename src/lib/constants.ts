@@ -26,6 +26,28 @@ export const GA_MEASUREMENT_ID = "G-PYHWGSM864";
 export const GOOGLE_SITE_VERIFICATION =
   "77nZt9ht0W7aKD6iTuegi-J7fzbb74UZqlpk9GUfWmw";
 
+/**
+ * Ad network (highrevenueformat.com) slot configurations.
+ * Each ad has a unique key returned by the ad network dashboard.
+ *
+ * Banner (728×90) — used for the sticky anchor, top, mid-content, and
+ * bottom placements.
+ *
+ * Box (300×250) — used for the desktop sidebar / in-content rectangle.
+ */
+export const AD_SLOTS = {
+  BANNER_728x90: {
+    key: "7c6723eb78f85e029f2622b8b4d94239",
+    width: 728,
+    height: 90,
+  },
+  BOX_300x250: {
+    key: "be62dbe03434f8ff9d36359f92b27f30",
+    width: 300,
+    height: 250,
+  },
+} as const;
+
 export interface NavLink {
   href: string;
   label: string;

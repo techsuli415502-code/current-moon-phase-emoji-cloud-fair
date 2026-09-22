@@ -12,6 +12,8 @@ import { MoonCalendar } from "@/components/site/moon-calendar";
 import { LunarFaq } from "@/components/site/lunar-faq";
 import { EeatBio } from "@/components/site/eeat-bio";
 import { SourcesList } from "@/components/site/sources-list";
+import { SidebarBoxAd } from "@/components/ads/sidebar-box-ad";
+import { MidContentBannerAd } from "@/components/ads/mid-content-banner-ad";
 import { SITE_URL } from "@/lib/constants";
 import { FAQS } from "@/lib/faq-data";
 
@@ -77,8 +79,20 @@ export default function HomePage() {
       />
 
       <Hero />
+
+      {/* Sidebar box ad — desktop only (300×250), premium above-the-fold placement */}
+      <section className="mx-auto -mt-4 mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-center lg:justify-end">
+          <SidebarBoxAd />
+        </div>
+      </section>
+
       <CurrentPhaseSection />
       <EightPhasesSection />
+
+      {/* Mid-content banner ad — between major sections, high scroll-depth viewability */}
+      <MidContentBannerAd />
+
       <LunarCycleSection />
       <MoonCalendar />
       <MoonMeaningSection />

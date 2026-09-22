@@ -6,6 +6,9 @@ import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { StarfieldBackground } from "@/components/site/starfield-background";
 import { GoogleAnalytics } from "@/components/site/google-analytics";
+import { TopBannerAd } from "@/components/ads/top-banner-ad";
+import { BottomBannerAd } from "@/components/ads/bottom-banner-ad";
+import { AnchorAd } from "@/components/ads/anchor-ad";
 import {
   SITE_URL,
   SITE_NAME,
@@ -109,13 +112,16 @@ export default function RootLayout({
         className={`${inter.variable} ${cormorant.variable} antialiased bg-background text-foreground`}
       >
         <StarfieldBackground />
-        <div className="relative flex min-h-screen flex-col">
+        <div className="relative flex min-h-screen flex-col pb-28 sm:pb-24">
           <Navbar />
+          <TopBannerAd />
           <main className="flex-1">{children}</main>
+          <BottomBannerAd />
           <Footer />
         </div>
         <Toaster />
         <GoogleAnalytics />
+        <AnchorAd />
       </body>
     </html>
   );
